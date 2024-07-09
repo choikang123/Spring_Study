@@ -4,8 +4,9 @@ import hello.hello_spring.member.*;
 
 public class OrderApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        OrderService orderService = appConfig.orderService();
+        MemberService memberService = appConfig.memberService();
 
         Member member = new Member(1L, "choi", Grade.VIP);
         memberService.join(member);

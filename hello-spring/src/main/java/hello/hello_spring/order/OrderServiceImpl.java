@@ -7,10 +7,14 @@ import hello.hello_spring.member.MeomoryMemberRepository;
 
 
 public class OrderServiceImpl implements OrderService {
-    private final MemberRepository memberRepository = new MeomoryMemberRepository();
-    private DiscountPolicy discountPolicy;
-    //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
-    //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
     @Override
     public Order createOrder(Long memId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memId);
