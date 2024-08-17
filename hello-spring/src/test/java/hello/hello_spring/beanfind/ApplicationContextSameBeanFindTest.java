@@ -1,7 +1,8 @@
 package hello.hello_spring.beanfind;
 
+
 import hello.hello_spring.member.MemberRepository;
-import hello.hello_spring.member.MeomoryMemberRepository;
+import hello.hello_spring.member.MemoryMemberRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class ApplicationContextSameBeanFindTest {
     @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면 , 중복 오류가 발생한다")
     void findBeanByDuple() {
         // MemberRepository bean = ac.getBean(MemberRepository.class);
-        Assertions.assertThrows(NoUniqueBeanDefinitionException.class, ()->
+        Assertions.assertThrows(NoUniqueBeanDefinitionException.class, () ->
                 ac.getBean(MemberRepository.class));
     }
 
@@ -47,12 +48,12 @@ public class ApplicationContextSameBeanFindTest {
     static class sameBeanConfig {
         @Bean
         public MemberRepository memberRepository1() {
-            return new MeomoryMemberRepository();
+            return new MemoryMemberRepository();
         }
 
         @Bean
         public MemberRepository memberRepository2() {
-            return new MeomoryMemberRepository();
+            return new MemoryMemberRepository();
         }
 
     }
