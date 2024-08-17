@@ -27,8 +27,9 @@ public class ApplicationContextInfo {
             BeanDefinition beanDefinition = ac.getBeanDefinition(beanDefinitionName);
             if (beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) {
                 Object bean = ac.getBean(beanDefinitionName);
-                System.out.println("name = " + beanDefinitionName + " Object=" + bean);
+                System.out.println("Object = " + bean);
             }
         }
+
     }
 }
