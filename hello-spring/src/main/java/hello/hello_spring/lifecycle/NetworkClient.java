@@ -36,7 +36,8 @@ public class NetworkClient {
         connect();
         call("초기화 연결 메세지");
     }
-
+    // 1. 빈 생성 -> 2.의존성 주입 -> 3. 초기화: 의존성 주입이 완료된 후 @postConstruct가 붙은 메서드가 호출
+    // 이 시점에서 빈은 모든 의존성이 주입된 상태
     @PreDestroy
     public void close() {
         System.out.println("NetworkClient.close");
