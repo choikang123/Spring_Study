@@ -20,5 +20,7 @@ public class HelloServlet extends HttpServlet {
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
         response.getWriter().write("hello " + username);
+        // 서블릿은 스프링부트에서 톰캣서버를 만들어주면 그 안에서 서버가 request reponse를 받으면
+        // 클래스에서 파싱해서 다시 서버로 쉽게 전달해주는 역할을 함
     }
 }
