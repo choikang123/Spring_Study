@@ -1,0 +1,21 @@
+package hello.itemservice.domain.item;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+public class Item {
+    private Long id;
+    private String itemName;
+    private Integer price;
+    private Integer quantity;
+
+    public Item() {
+    }
+
+    public Item(Integer price, String itemName, Integer quantity) {
+        this.price = price;
+        this.itemName = itemName;
+        this.quantity = quantity;
+    }
+}
