@@ -5,9 +5,8 @@ import jdk.jfr.Enabled;
 import lombok.Getter;
 import lombok.Setter;
 
-@Enabled
-@Getter
-@Setter
+@Entity
+@Getter @Setter
 public class Delivery {
     @Id
     @GeneratedValue

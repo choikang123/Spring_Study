@@ -56,4 +56,43 @@ public class Order {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
+
+    // 생성 메서드
+    public Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+        Order order = new Order();
+        order.setMember(member); // 양방향 관계설정
+        order.setDelivery(delivery); // 양방향 관계설정
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        } // 양방향 관계설정
+        order.setOrderStatus(OrderStatus.ORDER); //주문상태로 변경
+        order.setOrderDate(LocalDateTime.now()); //주문시간 설정
+        return order; // 초기화한 주문 반환
+    }
+
+    // 비즈니스 로직
+    public void cancle() { // 주문 취소 했을때
+        if (delivery.getStatus() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("배달완료된 상품은 취소할 수 없습니다");
+        } //만약 배달이 완료된 상태라면 예외 터트리기
+        // 주문 취소 했으면 수량 맞춰야지 어떻게? 주문한 수량만큼 원래 수량에 더해주기
+        this.setOrderStatus(OrderStatus.CANCLE);
+        for (OrderItem orderItem : orderItems) {
+            /*orderItem.getItem().addStock();*/ //
+            // addStock()에 주문수량 바로 넣어줘애 되는데, 주문 수량은 orderItem에 있음!
+            // 어떤 함수?
+            orderItem.cancle();
+        }
+    }
+
+    // 조회 로직
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice += orderItem.getTotalprice();
+        }
+        return totalPrice;
+    }
+
+    //
 }
